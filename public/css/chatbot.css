@@ -1,0 +1,98 @@
+
+.bitkode-chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    max-height: 500px;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bitkode-chatbot-header {
+    background: #00796b;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bitkode-chatbot-toggle {
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.bitkode-chatbot-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+    background: #f9f9f9;
+}
+
+.bitkode-chatbot-footer {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+
+.bitkode-chatbot-footer input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+}
+
+.bitkode-chatbot-footer button {
+    background: #00796b;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.bitkode-chatbot-msg {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.bitkode-chatbot-msg.user {
+    text-align: right;
+    color: #00796b;
+}
+
+.bitkode-chatbot-msg.bot {
+    text-align: left;
+    color: #333;
+}
+
+.bitkode-chatbot-launcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00796b;
+    color: white;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.bitkode-chatbot-container.hidden {
+    display: none;
+}
