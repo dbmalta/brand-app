@@ -16,12 +16,17 @@
     container.innerHTML = `
         <div class="bitkode-chatbot-header">
             <span>💬 Marketing Assistant</span>
-            <div class="bitkode-chatbot-toggle">−</div>
+            <div class="bitkode-chatbot-actions">
+                <span class="bitkode-chatbot-copy" title="Copy conversation">📋</span>
+                <span class="bitkode-chatbot-zoom-in" title="Increase size">＋</span>
+                <span class="bitkode-chatbot-zoom-out" title="Decrease size">－</span>
+                <span class="bitkode-chatbot-toggle">−</span>
+            </div>
         </div>
         <div class="bitkode-chatbot-body"></div>
         <div class="bitkode-chatbot-footer">
             <input type="text" placeholder="Type your message…" />
-            <button>Send</button>
+            <button class="bitkode-chatbot-send">Send</button>
         </div>
     `;
 
@@ -29,8 +34,34 @@
 
     const body = container.querySelector(".bitkode-chatbot-body");
     const input = container.querySelector("input");
-    const sendButton = container.querySelector("button");
+    const sendButton = container.querySelector(".bitkode-chatbot-send");
     const toggleButton = container.querySelector(".bitkode-chatbot-toggle");
+    const zoomInBtn = container.querySelector(".bitkode-chatbot-zoom-in");
+    const zoomOutBtn = container.querySelector(".bitkode-chatbot-zoom-out");
+    const copyBtn = container.querySelector(".bitkode-chatbot-copy");
+
+    let scale = parseFloat(localStorage.getItem("bitkode-chatbot-scale")) || 1;
+
+    function applyScale() {
+        container.style.transformOrigin = "bottom right";
+        container.style.transform = `scale(${scale})`;
+        localStorage.setItem("bitkode-chatbot-scale", scale);
+    }
+
+    zoomInBtn.addEventListener("click", () => {
+        scale = Math.min(scale + 0.1, 2);
+        applyScale();
+    });
+
+    zoomOutBtn.addEventListener("click", () => {
+        scale = Math.max(scale - 0.1, 0.5);
+        applyScale();
+    });
+
+    copyBtn.addEventListener("click", () => {
+        const text = chatHistory.map(h => `${h.sender === 'user' ? 'You' : 'Bot'}: ${h.msg}`).join('\n');
+        navigator.clipboard.writeText(text).catch(() => {});
+    });
 
     function appendMessage(msg, sender) {
         const div = document.createElement("div");
@@ -85,4 +116,5 @@
     });
 
     loadHistory();
+    applyScale();
 })();
