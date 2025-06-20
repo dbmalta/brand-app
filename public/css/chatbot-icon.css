@@ -26,3 +26,8 @@
 .bitkode-chatbot-container.hidden {
     display: none;
 }
+
+.bitkode-chatbot-footer .bitkode-chatbot-delete {
+    background: #b71c1c;
+    margin-left: 4px;
+}

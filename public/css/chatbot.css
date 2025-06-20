@@ -60,6 +60,11 @@
     cursor: pointer;
 }
 
+.bitkode-chatbot-footer .bitkode-chatbot-delete {
+    background: #b71c1c;
+    margin-left: 4px;
+}
+
 .bitkode-chatbot-msg {
     margin-bottom: 8px;
     line-height: 1.4;
