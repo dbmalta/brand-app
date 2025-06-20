@@ -25,7 +25,7 @@ if ($country !== '') {
     $params[] = $country;
 }
 
-$sql = "SELECT * FROM mktg_clients";
+$sql = "SELECT c.*, (SELECT COUNT(*) FROM mktg_client_campaigns cc WHERE cc.clientid = c.id) AS campaign_count FROM mktg_clients c";
 if ($where) $sql .= " WHERE " . implode(" AND ", $where);
 $sql .= " ORDER BY client_name ASC";
 
@@ -82,6 +82,7 @@ ob_start();
             <th>Name</th>
             <th>Contact</th>
             <th>Country</th>
+            <th>Campaigns</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -96,14 +97,19 @@ ob_start();
                     <?= htmlspecialchars($client['contact_phone']) ?>
                 </td>
                 <td><?= htmlspecialchars($client['country']) ?></td>
+                <td><?= (int)$client['campaign_count'] ?></td>
                 <td>
                     <a href="client_form.php?id=<?= $client['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="client_upload.php?client_id=<?= $client['id'] ?>" class="btn btn-sm btn-primary">Assets</a>
+                    <?php if ($client['campaign_count'] > 0): ?>
+                        <button class="btn btn-sm btn-danger" disabled>Delete</button>
+                    <?php else: ?>
+                        <a href="client_delete.php?id=<?= $client['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this client?')">Delete</a>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>
     <?php else: ?>
-        <tr><td colspan="4">No clients found.</td></tr>
+        <tr><td colspan="5">No clients found.</td></tr>
     <?php endif; ?>
     </tbody>
 </table>
