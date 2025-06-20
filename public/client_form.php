@@ -228,6 +228,11 @@ ob_start();
     <?php else: ?>
         <p class="text-muted">No links available.</p>
     <?php endif; ?>
+
+    <hr class="my-5">
+
+    <h4>📂 Assets</h4>
+    <p><a href="client_upload.php?client_id=<?= $id ?>" class="btn btn-outline-primary btn-sm">Manage Assets</a></p>
 <?php endif; ?>
 
 <?php $content = ob_get_clean(); ?>
