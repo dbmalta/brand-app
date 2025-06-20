@@ -17,6 +17,12 @@
     z-index: 1000;
 }
 
+.bitkode-chatbot-launcher:focus,
+.bitkode-chatbot-toggle:focus {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
+}
+
 .bitkode-chatbot-container.hidden {
     display: none;
 }
