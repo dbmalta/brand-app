@@ -44,10 +44,6 @@ ob_start();
     </div>
 </div>
 
-<div id="bitkode-chatbot-root"></div>
-   <script src="/chatbot-n8n.js"></script>
-
-
 <!-- Recent Clients Table -->
 <div class="card shadow-sm">
     <div class="card-header">
@@ -83,7 +79,7 @@ ob_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/chatbot.css" />
-    <link href="/css/chatbot-floating.css" rel="stylesheet">
+    <link href="/css/chatbot-icon.css" rel="stylesheet">
 </head>
 <body>
     <?php require __DIR__ . '/includes/layout.php'; ?>

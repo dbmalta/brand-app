@@ -13,6 +13,9 @@
     const iconButton = document.createElement("div");
     iconButton.className = "bitkode-chatbot-launcher";
     iconButton.innerHTML = "💬";
+    iconButton.setAttribute("aria-label", "Open chat");
+    iconButton.setAttribute("role", "button");
+    iconButton.setAttribute("tabindex", "0");
     root.appendChild(iconButton);
 
     const container = document.createElement("div");
@@ -21,7 +24,7 @@
     container.innerHTML = `
         <div class="bitkode-chatbot-header">
             <span>💬 Marketing Assistant</span>
-            <div class="bitkode-chatbot-toggle">×</div>
+            <div class="bitkode-chatbot-toggle" aria-label="Close chat" role="button" tabindex="0">×</div>
         </div>
         <div class="bitkode-chatbot-body"></div>
         <div class="bitkode-chatbot-footer">
@@ -89,10 +92,22 @@
         container.classList.remove("hidden");
         iconButton.style.display = "none";
     });
+    iconButton.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            iconButton.click();
+        }
+    });
 
     toggleButton.addEventListener("click", () => {
         container.classList.add("hidden");
         iconButton.style.display = "flex";
+    });
+    toggleButton.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleButton.click();
+        }
     });
 
     loadHistory();
