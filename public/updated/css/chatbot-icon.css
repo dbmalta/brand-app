@@ -20,3 +20,17 @@
 .bitkode-chatbot-container.hidden {
     display: none;
 }
+
+.bitkode-chatbot-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.bitkode-chatbot-actions span {
+    cursor: pointer;
+    user-select: none;
+}
+
+.bitkode-chatbot-delete {
+    color: #ffebee;
+}
