@@ -21,7 +21,8 @@
         <div class="bitkode-chatbot-body"></div>
         <div class="bitkode-chatbot-footer">
             <input type="text" placeholder="Type your message…" />
-            <button>Send</button>
+            <button class="bitkode-chatbot-send">Send</button>
+            <button class="bitkode-chatbot-delete">Delete History</button>
         </div>
     `;
 
@@ -29,7 +30,8 @@
 
     const body = container.querySelector(".bitkode-chatbot-body");
     const input = container.querySelector("input");
-    const sendButton = container.querySelector("button");
+    const sendButton = container.querySelector(".bitkode-chatbot-send");
+    const deleteButton = container.querySelector(".bitkode-chatbot-delete");
     const toggleButton = container.querySelector(".bitkode-chatbot-toggle");
 
     function appendMessage(msg, sender) {
@@ -48,6 +50,12 @@
     function loadHistory() {
         const saved = JSON.parse(localStorage.getItem("bitkode-chatbot-history") || "[]");
         saved.forEach(({ sender, msg }) => appendMessage(msg, sender));
+    }
+
+    function clearHistory() {
+        localStorage.removeItem("bitkode-chatbot-history");
+        chatHistory = [];
+        body.innerHTML = "";
     }
 
     sendButton.addEventListener("click", () => {
@@ -74,6 +82,12 @@
             console.error("Fetch error:", err);
             appendMessage("⚠️ Error: Could not reach the server.", "bot");
         });
+    });
+
+    deleteButton.addEventListener("click", () => {
+        if (confirm("Delete chat history?")) {
+            clearHistory();
+        }
     });
 
     input.addEventListener("keypress", e => {
